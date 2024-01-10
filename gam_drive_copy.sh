@@ -2,7 +2,6 @@
 
 # Script to copy Google Drive content from one employee to another using GAMADV-XTD3
 # Tested on zsh + bash
-# fish version coming soon
 
 echo "Starting the Google Drive transfer process..."
 
