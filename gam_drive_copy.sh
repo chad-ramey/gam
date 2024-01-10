@@ -9,9 +9,14 @@ echo "Starting the Google Drive transfer process..."
 read -p "Enter the email address of the old owner: " old_owner
 read -p "Enter the email address of the new owner: " new_owner
 
-# 1. Unsuspend old owner
-echo "Unsuspending the old owner..."
-gam unsuspend user $old_owner
+# Ask if the old owner's account needs to be activated
+read -p "Does the old owner's account need to be activated? (y/n): " activate_account
+
+# 1. Unsuspend old owner (if required)
+if [ "$activate_account" == "y" ]; then
+    echo "Unsuspending the old owner..."
+    gam unsuspend user $old_owner
+fi
 
 # 2. Create folder in new owner's drive
 echo "Creating 'Drive Copy' folder in the new owner's drive..."
@@ -48,12 +53,12 @@ gam user $old_owner transfer ownership $folder_id $new_owner
 
 # 7. Remove old owner's access to all copied data in the 'Drive Copy' folder
 echo "Removing old owner's access to all copied data in the 'Drive Copy' folder..."
-
-# Command to remove old owner's access from all items in the 'Drive Copy' folder
 gam user $new_owner print filelist select id $folder_id fields id showparent | gam csv - gam user "~Owner" delete drivefileacl "~id" $old_owner
 
-# 8. Suspend old owner after completion
-echo "Suspending the old owner again..."
-gam suspend user $old_owner
+# 8. Suspend old owner after completion (if it was activated earlier)
+if [ "$activate_account" == "y" ]; then
+    echo "Suspending the old owner again..."
+    gam suspend user $old_owner
+fi
 
 echo "Google Drive transfer process completed!"
