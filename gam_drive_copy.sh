@@ -9,11 +9,17 @@ echo "Starting the Google Drive transfer process..."
 read -p "Enter the email address of the old owner: " old_owner
 read -p "Enter the email address of the new owner: " new_owner
 
-# Ask if the old owner's account needs to be activated
-read -p "Does the old owner's account need to be activated? (y/n): " activate_account
+# Ask about the status of the old owner's account
+echo "Is the old owner's account archived, suspended, or active? Enter 'archived', 'suspended', or 'active':"
+read account_status
 
-# 1. Unsuspend old owner (if required)
-if [ "$activate_account" == "y" ]; then
+# If archived, unarchive then unsuspend
+if [ "$account_status" == "archived" ]; then
+    echo "Unarchiving the old owner's account..."
+    gam update user $old_owner archived off
+    echo "Unsuspending the old owner..."
+    gam unsuspend user $old_owner
+elif [ "$account_status" == "suspended" ]; then
     echo "Unsuspending the old owner..."
     gam unsuspend user $old_owner
 fi
@@ -55,8 +61,13 @@ gam user $old_owner transfer ownership $folder_id $new_owner
 echo "Removing old owner's access to all copied data in the 'Drive Copy' folder..."
 gam user $new_owner print filelist select id $folder_id fields id showparent | gam csv - gam user "~Owner" delete drivefileacl "~id" $old_owner
 
-# 8. Suspend old owner after completion (if it was activated earlier)
-if [ "$activate_account" == "y" ]; then
+# Suspend and archive old owner after completion if the account was archived initially
+if [ "$account_status" == "archived" ]; then
+    echo "Suspending the old owner again..."
+    gam suspend user $old_owner
+    echo "Archiving the old owner's account..."
+    gam update user $old_owner archived on
+elif [ "$account_status" == "suspended" ]; then
     echo "Suspending the old owner again..."
     gam suspend user $old_owner
 fi
