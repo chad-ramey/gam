@@ -8,9 +8,21 @@ read old_owner
 echo "Enter the email address of the new owner: "
 read new_owner
 
-# 1. Unsuspend old owner
-echo "Unsuspending the old owner..."
-gam unsuspend user $old_owner
+# Ask about the status of the old owner's account
+echo "Is the old owner's account archived, suspended, or active? Enter 'archived', 'suspended', or 'active':"
+read account_status
+
+# If archived, unarchive then unsuspend
+switch $account_status
+    case archived
+        echo "Unarchiving the old owner's account..."
+        gam update user $old_owner archived off
+        echo "Unsuspending the old owner..."
+        gam unsuspend user $old_owner
+    case suspended
+        echo "Unsuspending the old owner..."
+        gam unsuspend user $old_owner
+end
 
 # 2. Create folder in new owner's drive
 echo "Creating 'Drive Copy' folder in the new owner's drive..."
@@ -47,8 +59,16 @@ gam user $old_owner transfer ownership $folder_id $new_owner
 echo "Removing old owner's access to all copied data in the 'Drive Copy' folder..."
 gam user $new_owner print filelist select id $folder_id fields id | gam csv - gam user "~Owner" delete drivefileacl "~id" $old_owner
 
-# 8. Suspend old owner after completion
-echo "Suspending the old owner again..."
-gam suspend user $old_owner
+# Suspend and archive old owner after completion if the account was archived initially
+switch $account_status
+    case archived
+        echo "Suspending the old owner again..."
+        gam suspend user $old_owner
+        echo "Archiving the old owner's account..."
+        gam update user $old_owner archived on
+    case suspended
+        echo "Suspending the old owner again..."
+        gam suspend user $old_owner
+end
 
 echo "Google Drive transfer process completed!"
