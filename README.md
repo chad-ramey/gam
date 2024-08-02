@@ -1,2 +1,2 @@
 # gam
-GAM Laboratory
+GAM Lab
