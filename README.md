@@ -20,7 +20,7 @@ This repository contains a collection of shell scripts designed to automate vari
 ### 2. `gam_drive_copy.sh`
 **Description**: This script copies all files from one Google Drive user to another, retaining the folder structure. It ensures that the data is transferred correctly to the new owner while retaining file and folder permissions.
 
-### 3. `gam_drive_file_folder_copy.sh`
+### 3. `[gam_drive_file_folder_copy.sh](gam_drive_file_folder_copy.sh)`
 **Description**: A more advanced script for transferring Google Drive content between users. It:
 - Checks if a folder named after the old owner exists in the new owner's Drive.
 - Reuses the folder or creates a new one.
