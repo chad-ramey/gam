@@ -14,10 +14,10 @@ This repository contains a collection of shell scripts designed to automate vari
 
 ## Scripts Overview
 
-### 1. `gam_cal_wipe.sh`
+### 1. [gam_cal_wipe.sh](gam_cal_wipe.sh)
 **Description**: This script removes all calendar events from a specific user's calendar using GAMADV-XTD3. It is useful when needing to wipe calendar data for offboarding or account cleanup.
 
-### 2. `gam_drive_copy.sh`
+### 2. [gam_drive_copy.sh](gam_drive_copy.sh)
 **Description**: This script copies all files from one Google Drive user to another, retaining the folder structure. It ensures that the data is transferred correctly to the new owner while retaining file and folder permissions.
 
 ### 3. [gam_drive_file_folder_copy.sh](gam_drive_file_folder_copy.sh)
@@ -27,19 +27,19 @@ This repository contains a collection of shell scripts designed to automate vari
 - Copies the files and transfers ownership.
 - Removes old owner access after the transfer is complete.
 
-### 4. `gam_drive_file_transfer.sh`
+### 4. [gam_drive_file_transfer.sh](gam_drive_file_transfer.sh)
 **Description**: This script transfers ownership of specific files from one Google Drive user to another. It ensures that the new owner has full control over the files, and it can be used for bulk file transfers during offboarding.
 
-### 5. `gam_drive_folder_file_transfer.sh`
+### 5. [gam_drive_folder_file_transfer.sh](gam_drive_folder_file_transfer.sh)
 **Description**: This script transfers both folders and files from one user to another. It:
 - Recursively checks folder permissions.
 - Adds the new owner as an editor, then claims ownership.
 - Removes the old owner from the permissions list.
 
-### 6. `update-gam7.sh`
+### 6. [update-gam7.sh](update-gam7.sh)
 **Description**: This script checks if a new version of GAM is available and updates it. Useful for automating the update process for GAM version 7.
 
-### 7. `update-gamadv-xtd3.sh`
+### 7. [update-gamadv-xtd3.sh](update-gamadv-xtd3.sh)
 **Description**: Similar to the `update-gam7.sh` script, this checks if a new version of GAMADV-XTD3 is available on GitHub and updates it if necessary.
 
 ## Requirements
