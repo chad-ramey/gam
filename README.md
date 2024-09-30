@@ -4,7 +4,6 @@
 This repository contains a collection of shell scripts designed to automate various tasks using [GAMADV-XTD3](https://github.com/taers232c/GAMADV-XTD3), a command-line tool for managing Google Workspace.
 
 ## Table of Contents
-  - [Table of Contents](#table-of-contents)
   - [Scripts Overview](#scripts-overview)
   - [Requirements](#requirements)
   - [Installation](#installation)
