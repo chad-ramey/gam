@@ -4,17 +4,8 @@
 This repository contains a collection of shell scripts designed to automate various tasks using [GAMADV-XTD3](https://github.com/taers232c/GAMADV-XTD3), a command-line tool for managing Google Workspace.
 
 ## Table of Contents
-- [GAM Lab](#gam-lab)
-  - [Google Workspace GAM Scripts](#google-workspace-gam-scripts)
   - [Table of Contents](#table-of-contents)
   - [Scripts Overview](#scripts-overview)
-    - [1. `gam_cal_wipe.sh`](#1-gam_cal_wipesh)
-    - [2. `gam_drive_copy.sh`](#2-gam_drive_copysh)
-    - [3. `gam_drive_file_folder_copy.sh`](#3-gam_drive_file_folder_copysh)
-    - [4. `gam_drive_file_transfer.sh`](#4-gam_drive_file_transfersh)
-    - [5. `gam_drive_folder_file_transfer.sh`](#5-gam_drive_folder_file_transfersh)
-    - [6. `update-gam7.sh`](#6-update-gam7sh)
-    - [7. `update-gamadv-xtd3.sh`](#7-update-gamadv-xtd3sh)
   - [Requirements](#requirements)
   - [Installation](#installation)
   - [Usage](#usage)
