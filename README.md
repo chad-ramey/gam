@@ -1,11 +1,11 @@
 # GAM Lab 
-## Google Workspace Automation Scripts
+## Google Workspace GAM Scripts
 
 This repository contains a collection of shell scripts designed to automate various tasks using [GAMADV-XTD3](https://github.com/taers232c/GAMADV-XTD3), a command-line tool for managing Google Workspace.
 
 ## Table of Contents
 - [GAM Lab](#gam-lab)
-  - [Google Workspace Automation Scripts](#google-workspace-automation-scripts)
+  - [Google Workspace GAM Scripts](#google-workspace-gam-scripts)
   - [Table of Contents](#table-of-contents)
   - [Scripts Overview](#scripts-overview)
     - [1. `gam_cal_wipe.sh`](#1-gam_cal_wipesh)
