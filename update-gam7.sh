@@ -18,7 +18,7 @@
 #    Replace '~/bin/gam7/gam' with the correct path to your local GAM 7 installation.
 #    You can find the GAM binary location by running 'which gam' or checking your installation directory.
 # 
-# 3. Run this script using 'bash' or add it to a cron job for periodic checks.
+# 3. Run this script using 'bash', add it to a cron job for periodic checks, or add a shortcut to run it from terminal.
 #
 # 4. Ensure you have sufficient permissions to execute GAM updates.
 
