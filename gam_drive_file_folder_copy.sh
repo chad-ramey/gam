@@ -31,7 +31,7 @@
 # - This script has been tested on zsh and bash.
 
 # Author: Chad Ramey
-# Date: August 1, 2024
+# Updated: March 11, 2025
 
 # Function to handle the transfer of Drive data
 transfer_drive_data() {
@@ -44,7 +44,7 @@ transfer_drive_data() {
         echo -e "\nChecking if '$old_owner' folder exists in the new owner's drive..."
         folder_check_output=$(~/bin/gamadv-xtd3/gam user "$new_owner" print filelist query "name='$old_owner' and mimeType='application/vnd.google-apps.folder' and trashed=false")
         
-        existing_folder_id=$(echo "$folder_check_output" | awk -F, 'NR==2 {print $3}' | sed 's#https://drive.google.com/drive/folders/##')
+        existing_folder_id=$(echo "$folder_check_output" | awk -F, 'NR==2 {print $1}')
 
         if [ -n "$existing_folder_id" ]; then
             folder_id="$existing_folder_id"
@@ -56,8 +56,13 @@ transfer_drive_data() {
         else
             echo "Creating '$old_owner' folder in the new owner's drive..."
             folder_creation_output=$(~/bin/gamadv-xtd3/gam user "$new_owner" create drivefile drivefilename "$old_owner" mimetype gfolder)
-            folder_id=$(echo "$folder_creation_output" | awk -F'[][]' '{print $2}')
-
+            
+            # Debugging output
+            echo "Folder creation output: $folder_creation_output"
+            
+            # Extracting the folder ID correctly using sed
+            folder_id=$(echo "$folder_creation_output" | sed -n 's/.*(\(.*\)).*/\1/p')
+            
             # Check for successful folder creation
             if [ -z "$folder_id" ]; then
                 echo "Failed to create folder or extract folder ID."
