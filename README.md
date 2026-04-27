@@ -48,7 +48,7 @@ This repository contains a collection of shell scripts designed to automate vari
 ## Installation
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-repo-name/gam-scripts.git
+   git clone https://github.com/chad-ramey/gam.git
    ```
 2. Ensure you have GAMADV-XTD3 installed and the correct OAuth credentials are in place.
 

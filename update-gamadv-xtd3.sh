@@ -1,16 +1,21 @@
 #!/bin/bash
+set -euo pipefail
 
 # Script: GAMADV-XTD3 Version Checker and Auto-Updater with Filtered Release Notes
-# Description: This script checks the installed version of GAMADV-XTD3, compares it 
+# Description: This script checks the installed version of GAMADV-XTD3, compares it
 #              with the latest version available from GitHub, and updates GAMADV-XTD3 if a newer version is available.
 #              It also displays only the relevant release notes for the latest version.
 # Requirements: jq, curl
 #
+# Usage: GAM_BIN=/path/to/gamadv-xtd3/gam ./update-gamadv-xtd3.sh  (or rely on the $HOME/bin/gamadv-xtd3/gam default)
+#
 # Author: Chad Ramey
 # Last Modified: October 31, 2024
 
+GAM_BIN="${GAM_BIN:-$HOME/bin/gamadv-xtd3/gam}"
+
 # Get the installed version of GAMADV-XTD3 by pointing to the correct executable and stripping "GAMADV-XTD3" prefix
-installed_version=$(/Users/chad.ramey/bin/gamadv-xtd3/gam version | grep "GAMADV-XTD3" | awk '{print $2}' | sed 's/[^0-9.]//g')
+installed_version=$("$GAM_BIN" version | grep "GAMADV-XTD3" | awk '{print $2}' | sed 's/[^0-9.]//g')
 
 # Get the latest version and release notes from the GitHub API
 latest_version=$(curl -s https://api.github.com/repos/taers232c/GAMADV-XTD3/releases/latest | jq -r '.name' | sed 's/[^0-9.]//g')

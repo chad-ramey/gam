@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Script: Transfer Google Drive File or Folder
 #
@@ -6,10 +7,6 @@
 # This script transfers a Google Drive file or folder and its contents from one employee to another 
 # using GAMADV-XTD3. It supports previewing the changes before executing the transfer and handles 
 # scenarios where the folder contains other owners.
-#
-# TODO:
-# - Handle folders with other owners by using skipusers ~ownerid
-# - Improve user interface for better user experience
 #
 # Notes:
 # - Ensure that GAMADV-XTD3 is installed and properly configured.

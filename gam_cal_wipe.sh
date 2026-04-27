@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 # Batch Processing Script for Handling Suspended and Archived Accounts
 #
@@ -39,8 +41,8 @@
 # Ask the user if the accounts are both suspended and archived or just suspended
 read -p "Are the accounts both suspended and archived? (y/n): " IS_ARCHIVED
 
-# Path to the CSV file containing the emails
-CSV_FILE=~/Desktop/Email.csv
+# Path to the CSV file containing the emails (pass as first argument or set CSV_FILE env var)
+CSV_FILE="${1:-${CSV_FILE:-./Email.csv}}"
 
 # Maximum number of retries for calendar wipe
 MAX_RETRIES=3
@@ -58,7 +60,7 @@ if [[ ! -f "$CSV_FILE" ]]; then
 fi
 
 # Read the emails from the CSV file (skip the header)
-EMAILS=($(tail -n +2 "$CSV_FILE"))
+mapfile -t EMAILS < <(tail -n +2 "$CSV_FILE")
 
 # Function to process a single email
 process_email() {

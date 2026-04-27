@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Script: Google Drive Content Transfer
 # Description:

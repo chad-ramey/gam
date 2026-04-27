@@ -1,15 +1,20 @@
 #!/bin/bash
+set -euo pipefail
 
 # Script: GAM 7 Version Checker and Auto-Updater with Filtered Release Notes
 # Description: This script checks the installed version of GAM 7, compares it with the latest version available from GitHub,
 #              and updates GAM 7 if a newer version is available. It also displays only the relevant release notes.
 # Requirements: jq, curl
 #
+# Usage: GAM7_BIN=/path/to/gam7/gam ./update-gam7.sh  (or rely on the $HOME/bin/gam7/gam default)
+#
 # Author: Chad Ramey
 # Last Modified: October 31, 2024
 
+GAM7_BIN="${GAM7_BIN:-$HOME/bin/gam7/gam}"
+
 # Get the installed version of GAM 7 by pointing to the correct executable and stripping "GAM" prefix
-installed_version=$(/Users/chad.ramey/bin/gam7/gam version | grep "GAM " | awk '{print $2}' | sed 's/[^0-9.]//g')
+installed_version=$("$GAM7_BIN" version | grep "GAM " | awk '{print $2}' | sed 's/[^0-9.]//g')
 
 # Get the latest version and release notes from the GitHub API
 latest_version=$(curl -s https://api.github.com/repos/GAM-team/GAM/releases/latest | jq -r '.name' | sed 's/[^0-9.]//g')

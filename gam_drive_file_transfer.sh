@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 # Script: Google Drive File Transfer
 #
@@ -21,7 +22,6 @@
 # - Customize the script as needed for your environment.
 #
 # - Added handling for ACL 'Does not exist' error.
-# - TODO: Add support for multiple files, suspend/unsuspend functionality.
 #
 # Author: Chad Ramey
 # Date: August 2, 2024
